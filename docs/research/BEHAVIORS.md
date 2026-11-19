@@ -38,14 +38,14 @@ All values were measured on the live site (Chrome, 1440 / 768 / 390 px) and re-c
 Injected SEO spam on the live site: hidden casino link blocks (`top:-82371px` …), the white "Roll X" text (and the "Tài liệu của đối tác…" block, ~370–400px of blank space before the footer), a fixed hidden google.com link, and the hidden `menu-item-114552` link (kept only as an empty, inert 14px menu item so the nav geometry is identical).
 
 ## Inner pages (69 files + index.html)
-- File names: URL path with `/` → `-` plus `.html` (`tin-tuc/abc/` → `tin-tuc-abc.html`). All links are local.
+- Clean URLs (no `.html`): each page is `slug/index.html` and every link is `/slug`, following the original paths (`/tin-tuc/abc`, `/nha-pho/page/2`, `/danh-muc/tin-tuc`, `/tag/biet-thu`). Assets use root paths (`/css`, `/js`, `/images`), so the site must be served from a domain root by a web server (it does not work when opened via `file://`).
 - Repetitive types are represented by samples. Links to posts that were not built point to a sample of the same type:
-  - project post → `cong-trinh-anh-phung-an-khanh.html`
-  - house design → `mau-nha-pho-3-tang-hien-dai-16.html`
-  - article → `tai-sao-nen-chon-xay-dung-adf-khi-xay-khach-san.html`
-  - `tin-tuc/*` → `tin-tuc-bao-gia-xay-nha-tai-ha-noi-moi-nhat.html`
-  - `danh-muc/*` → `danh-muc-tin-tuc.html`
-  - `tag/*` → `tag-biet-thu.html`
+  - project post → `/cong-trinh-anh-phung-an-khanh`
+  - house design → `/mau-nha-pho-3-tang-hien-dai-16`
+  - article → `/tai-sao-nen-chon-xay-dung-adf-khi-xay-khach-san`
+  - `tin-tuc/*` → `/tin-tuc-bao-gia-xay-nha-tai-ha-noi-moi-nhat`
+  - `danh-muc/*` → `/danh-muc-tin-tuc`
+  - `tag/*` → `/tag-biet-thu`
   - `/page/N` → page 1 of that archive
 - **Image lightbox** (`a.lightbox-gallery`): Magnific-style image popup. The original groups links by parent `.col-inner`, so each image opens alone. Arrows and ←/→ only appear when there is more than one image. Close: Esc, click, ✕.
 - **Banner grid** (`[data-packery-options]`): Packery-like layout, top-most then left-most fit. Re-lays out on load and on resize; `processing` is removed on load.
