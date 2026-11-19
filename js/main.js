@@ -1,5 +1,5 @@
 /*
- * ADF CONS - static site
+ * GRM Group - static site
  * Vanilla JS re-implementation of the behaviours the original page gets from
  * Flatsome (+ jQuery, hoverIntent, Flickity, Magnific Popup, GTranslate).
  * Timings and thresholds were measured on the live site.
