@@ -677,7 +677,32 @@
   Slider.prototype.uiChange = function () { this.stopPlayer(); };
 
   function initSliders() {
-    $$('[data-flickity-options]').forEach(function (el) { el._slider = new Slider(el); });
+    $$('[data-flickity-options]').forEach(function (el) {
+      el._slider = new Slider(el);
+      // Flatsome: imagesLoaded -> .slider-wrapper .loading-spin fadeOut (jQuery default 400ms)
+      var wrapper = el.closest('.slider-wrapper');
+      var spins = wrapper ? $$('.loading-spin', wrapper) : [];
+      if (!spins.length) return;
+      // only the visible slide's images: lazy images in hidden slides never fire load
+      var imgs = $$('.is-selected img', el).filter(function (img) { return !img.complete; });
+      var left = imgs.length, faded = false;
+      window.addEventListener('load', function () { fadeOut(); });
+      function fadeOut() {
+        if (faded) return;
+        faded = true;
+        spins.forEach(function (s) {
+          s.style.transition = 'opacity 400ms ease';
+          s.style.opacity = '0';
+          setTimeout(function () { s.style.display = 'none'; }, 400);
+        });
+      }
+      if (!left) return fadeOut();
+      imgs.forEach(function (img) {
+        function done() { if (--left === 0) fadeOut(); }
+        img.addEventListener('load', done, { once: true });
+        img.addEventListener('error', done, { once: true });
+      });
+    });
   }
 
   /* ------------------------------------------------------------------ *
